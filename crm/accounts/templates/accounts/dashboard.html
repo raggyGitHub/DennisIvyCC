@@ -12,15 +12,17 @@
 			<a class="btn btn-primary btn-sm btn-block" href="">Create Customer</a>
 			<table class="table table-sm">
 				<tr>
+					<th></th>
 					<th>Customer</th>
-					<th>Orders</th>
+					<th>Phone</th>
 				</tr>	
-				{%for customer in customers %}
+				{% for customer in customers %}
 					<tr>
+						<td><a class="btn btn-sm btn-dark" href="{% url 'customer' customer.id %}">View</a></td>
 						<td>{{ customer.name }}</td>
 						<td>{{ customer.phone }}</td>
 					</tr>
-				{%endfor%}
+				{% endfor %}
 
 			</table>
 		</div>
