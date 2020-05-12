@@ -91,7 +91,7 @@ def customer(request, pk_test):
 def createOrder(request, pk ):
    OrderFormSet = inlineformset_factory(Customer, Order, fields=('product','status'),extra = 10)
    customer = Customer.objects.get(id = pk)
-   formset = OrderFormSet(queryset=Order.objects.none ,instance = customer)
+   formset = OrderFormSet(queryset=Order.objects.none() ,instance = customer)
    #form = OrderForm( initial = {'customer': customer }) this line changed using inline Formsets
    if request.method == 'POST':
       form = OrderForm(request.POST)
@@ -99,10 +99,10 @@ def createOrder(request, pk ):
       if formset.is_valid():
          formset.save()
          return redirect('/')
-   context = { 'formset':formset }
+   context = { 'form':formset }
    return render (request,'accounts/order_form.html', context)
 
-@login_required(login_url='login')
+
 def updateOrder(request, pk):
    
    order = Order.objects.get(id = pk)
